@@ -9,7 +9,7 @@
     </resultMap>
 
     <select id="getCount" resultType="int" parameterType="${fullQueryClass}">
-        SELECT COUNT(1) FROM suggestion
+        SELECT COUNT(1) FROM ${table}
         <include refid="select_where"/>
     </select>
 
