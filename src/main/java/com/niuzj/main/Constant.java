@@ -127,11 +127,9 @@ public interface Constant {
      */
     String CONTROLLER_CLASS = "${controllerClass}";
 
-
-
-
-
-
-
+    /**
+     * 表名
+     */
+    String TABLE = "${table}";
 
 }
