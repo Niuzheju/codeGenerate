@@ -7,6 +7,7 @@ import ${fullQueryClass};
 import ${fullVoClass};
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.fx.util.LogUtil;
 
 import java.util.List;
 

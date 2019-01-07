@@ -11,10 +11,10 @@ public class CodeGenerator {
     //实体类全类名
     private String model;
 
-    //项目源码所在目录，src/main
+    //项目源码所在目录，main/java
     private String rootPath;
 
-    //基础包
+    //基础包, com.
     private String rootPackagePath;
 
     //controller访问路径
@@ -25,6 +25,9 @@ public class CodeGenerator {
 
     private String table;
 
+    //mapper所在路径
+    private String mapperPath;
+
     private Map<String, String> data = new HashMap<>();
 
     private Map<String, String[]> moduleKeyMap = new HashMap<>();
@@ -33,14 +36,16 @@ public class CodeGenerator {
 
     }
 
-    public CodeGenerator(String model, String rootPath, String rootPackagePath, String controllerPath, String jspPath, String table) {
-        this();
+    public CodeGenerator(String model, String rootPath, String mapperPath, String controllerPath, String jspPath, String table) {
         this.model = model;
-        this.rootPath = rootPath;
-        this.rootPackagePath = rootPackagePath;
+        //获取顶层包结构
+        this.rootPackagePath = rootPath.split("java\\\\")[1].replace("\\", ".");
+        //获取java所在目录
+        this.rootPath = rootPath.split("java\\\\")[0] + "java";
         this.controllerPath = controllerPath;
         this.jspPath = jspPath;
         this.table = table;
+        this.mapperPath = mapperPath;
     }
 
     public void init() {
@@ -53,7 +58,7 @@ public class CodeGenerator {
         String model = this.model.substring(this.model.lastIndexOf(".") + 1);
         data.put(Constant.MODEL, model);
         data.put(Constant.S_MODEL, firstToLower(model));
-        rootPackagePath += "." + model.toLowerCase();
+//        rootPackagePath += "." + model.toLowerCase();
 
         //query
         String queryPackage = rootPackagePath + ".query";
@@ -186,15 +191,14 @@ public class CodeGenerator {
         String module = fileName.split("-")[0];
         String rootPath = "";
         if ("mapper".equals(module)) {
-            rootPath = this.rootPath + "\\resources\\mybatis\\";
-            File mapperRootPath = new File(rootPath);
+            File mapperRootPath = new File(this.mapperPath);
             if (!mapperRootPath.exists()) {
                 if (!mapperRootPath.mkdirs()) {
                     System.out.println("创建mapper目录失败" + rootPath);
                     return null;
                 }
             }
-            rootPath += data.get(Constant.S_MODEL) + "-mapper" + fileSuffix;
+            rootPath = this.mapperPath + data.get(Constant.S_MODEL) + "-mapper" + fileSuffix;
             File mapperFile = new File(rootPath);
             if (!mapperFile.exists()) {
                 if (!mapperFile.createNewFile()) {
@@ -204,7 +208,7 @@ public class CodeGenerator {
             return mapperFile;
 
         } else {
-            rootPath = this.rootPath + "\\java";
+            rootPath = this.rootPath;
             String[] datas = moduleKeyMap.get(module);
             //包名
             String pac = datas[0];

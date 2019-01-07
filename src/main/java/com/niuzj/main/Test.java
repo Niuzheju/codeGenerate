@@ -8,12 +8,12 @@ public class Test {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        String model = "com.niuzj.admin.model.User";
-        String rootPath = "F:\\技术学习\\testpro\\src\\main";
-        String rootPackagePath = "com.niuzj.admin";
-        String controllerPath = "/user/user_manage.htm";
-        String jspPath = "/user/user_manage.jsp";
-        String table = "user";
+        String model = "com.fx.tthouse.model.base.ExpendConfig";
+        String rootPath = "E:\\公司代码\\tt_house\\tth_parent\\admin\\src\\main\\java\\com\\tthouse\\admin\\biz";
+        String controllerPath = "/operation/expend/expend_config.htm";
+        String jspPath = "/expend/expend_config.jsp";
+        String table = "expend_config";
+        String mapperPath = "E:\\公司代码\\tt_house\\tth_parent\\admin\\src\\main\\resources\\mybatis\\mapper\\";
 
 //        try {
 //            System.out.println("输入实体类全类名:");
@@ -31,7 +31,7 @@ public class Test {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-        CodeGenerator generator = new CodeGenerator(model, rootPath, rootPackagePath, controllerPath, jspPath, table);
+        CodeGenerator generator = new CodeGenerator(model, rootPath, mapperPath, controllerPath, jspPath, table);
         generator.init();
         generator.generate();
 

@@ -17,7 +17,6 @@
         SELECT *
         FROM ${table}
         <include refid="select_where"/>
-        ORDER BY update_time DESC
         <if test="pageBean !=null">
             LIMIT #{pageBean.offset},#{pageBean.pageSize}
         </if>
