@@ -8,11 +8,11 @@ public class Test {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        String model = "com.fx.tthouse.model.base.ExpendConfig";
+        String model = "com.tthouse.admin.store.model.StoreProduct";
         String rootPath = "E:\\公司代码\\tt_house\\tth_parent\\admin\\src\\main\\java\\com\\tthouse\\admin\\biz";
-        String controllerPath = "/operation/expend/expend_config.htm";
-        String jspPath = "/expend/expend_config.jsp";
-        String table = "expend_config";
+        String controllerPath = "/operation/biz/store_product.htm";
+        String jspPath = "/biz/store_product.jsp";
+        String table = "store_product";
         String mapperPath = "E:\\公司代码\\tt_house\\tth_parent\\admin\\src\\main\\resources\\mybatis\\mapper\\";
 
 //        try {
